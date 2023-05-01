@@ -4,6 +4,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import { createConnection} from 'typeorm'
 import { Request, Response } from 'express'
+require('dotenv').config()
 import * as amqp from 'amqplib/callback_api'
 
 
@@ -11,7 +12,7 @@ createConnection().then(db => {
 	const productRepository = db.getMongoRepository(Product)
 
 
-	amqp.connect('amqps://gfjabeit:QFaGClYPbSKQ4hh1vPXUJg2dXNTmdii5@moose.rmq.cloudamqp.com/gfjabeit', (err, connection) => {
+	amqp.connect(process.env.RABBITMQ_URL, (err, connection) => {
 			if(err) {
 				throw err
 			}

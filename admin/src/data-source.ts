@@ -4,11 +4,11 @@ import { Product } from "./entity/Product"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: process.env.HOST,
     port: 5432,
-    username: "postgres",
-    password: "Phillip@99",
-    database: "admin",
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     synchronize: true,
     logging: false,
     entities: [Product],
